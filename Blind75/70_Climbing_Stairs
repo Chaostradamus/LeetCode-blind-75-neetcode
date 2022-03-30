@@ -36,4 +36,7 @@ Explanation: There are three ways to climb to the top.
 
 base case of last step = 1 bc only one way to reach and n - 1th step is always 1 because only can make 1 jump since 2 would put you out of bounds
 similiar to fibonacci sequence in selecting last two numbers to add up to next but backwards
-temp stores variable one to help shift two one index while one = one + two to calculate last two numbers
+temp helps store one before one is calculated to help shift two on spot to what one was previously
+while 1 shifts over one index and calculates new total from last 2 steps
+
+if you set two before 1 then youll run into indexing errors where temp helps set two and two will just be set to one and youll be doing a doubling vs adding two previous numbers

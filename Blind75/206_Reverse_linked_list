@@ -6,10 +6,45 @@
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         prev, cur = None, head
-        
+
         while cur:
             nxt = cur.next
             cur.next = prev
             prev = cur
             cur = nxt
         return prev
+
+# set prev to null and cur to head
+# while theres a head, temporary pointer called next holds currents next. currents next gets reversed to prev which is null
+# then shift pointers of curr and prev by calling prev to current and current to the temporary variable
+# once current is null return prev since it will be the new  head
+# o(n) time but o(1) space because nothing new created
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+
+        nh = head
+        if head.next:
+            nh = self.reverseList(head.next)
+            head.next.next = head
+        head.next = None
+
+        return nh
+
+
+# recursive solution
+# base case first, if theres no head then return null
+# set newHead to head initially
+# if theres a head.next recursive call on head.next and set that as NH. this will leave last call as the NH
+# head.next.next redirects head.next's link to the current head so it reverses it basically
+# once out of the loop, break head.next link so theres no cycle
+# return NH because it is the first head of the reversed list
+
+# o(n) time but o(n) because of stack space

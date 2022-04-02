@@ -1,0 +1,61 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l = 0
+        r = len(s) - 1
+        
+        while l < r:
+            while l < r and not self.alpha(s[l]):
+                l += 1
+            while r > l and not self.alpha(s[r]):
+                r -= 1
+            if s[l].lower() != s[r].lower():
+                return false
+            l += 1
+            r -= 1
+        
+        return True   
+                                 
+    def alpha(self, c):
+        return (ord('A') <= ord(c) <= ord('Z') or
+                ord('a') <= ord(c) <= ord('z') or
+                ord('0') <= ord(c) <= ord('9'))
+
+
+
+# A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+
+# Given a string s, return true if it is a palindrome, or false otherwise.
+
+
+# Example 1:
+
+# Input: s = "A man, a plan, a canal: Panama"
+# Output: true
+# Explanation: "amanaplanacanalpanama" is a palindrome.
+# Example 2:
+
+# Input: s = "race a car"
+# Output: false
+# Explanation: "raceacar" is not a palindrome.
+# Example 3:
+
+# Input: s = " "
+# Output: true
+# Explanation: s is an empty string "" after removing non-alphanumeric characters.
+# Since an empty string reads the same forward and backward, it is a palindrome.
+
+
+# explanation
+# in python we can create newstring and add all of S through checks of alphanumeracy and add the lowercase version of the character to new string
+# after that we can compare newstr(s) with a built in function reverse of newstring newstring(::-1) and return true or false
+# o(n) time but o(n) space cause of new string
+
+# solution 2
+# define own alphanumeric checker by seeing if character is between ascii values of A-Z a-z and 0-9...using ord() function
+# if it is in between those ascii values then it is alphanumeric
+# next initialize Left and Right pointers at the start and end of string
+# while left is less than right, 2 while loops to check if l > r and r > l and calling isAlpha(s[l]) on current characters
+# if they are alpha then compre if they are ==....return false if not and once algo runs it'l retrun true if it breaks out of loops
+# o(n) time but o(1) space because no extra space was used
+

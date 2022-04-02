@@ -1,0 +1,46 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        match = { "}":"{", ")":"(", "]":"["}
+        
+        for c in s:
+            if c in match:
+                if stack and stack[-1] == match[c]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                    stack.append(c)
+        
+        return True if not stack else False
+
+# Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+
+# An input string is valid if:
+
+# Open brackets must be closed by the same type of brackets.
+# Open brackets must be closed in the correct order.
+
+
+# Example 1:
+
+# Input: s = "()"
+# Output: true
+# Example 2:
+
+# Input: s = "()[]{}"
+# Output: true
+# Example 3:
+
+# Input: s = "(]"
+# Output: false
+
+
+# first we initialize stack and a hashmap. map key as closing bracket and value as opening
+# for every character in S, we append if its an opening bracket
+# if its a closing, we compare the top of the stack and current bracket( that we use as a key to map to the correct closing bracket)
+# if the top of the stack does match with the key:value, we pop 
+# return false if it does not match because tht indicates an s that will never completely be empty and matching
+# return true if its empty else return false
+# o(n) time and o(n) space

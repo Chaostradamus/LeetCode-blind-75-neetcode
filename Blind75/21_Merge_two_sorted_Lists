@@ -7,7 +7,7 @@ class Solution:
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode()
         tail = dummy
-        
+
         while l1 and l2:
             if l1.val < l2.val:
                 tail.next = l1
@@ -16,14 +16,14 @@ class Solution:
                 tail.next = l2
                 l2 = l2.next
             tail = tail.next
-            
+
         if l1:
             tail.next = l1
         if l2:
             tail.next = l2
-            
-        return dummy.next    
-    
+
+        return dummy.next
+
 
 # You are given the heads of two sorted linked lists list1 and list2.
 
@@ -36,3 +36,39 @@ class Solution:
 # shift tail to tail.next regardless after every iteration
 # if l1 is ended, set tail.next to l2 and vice versa
 # o(n + n) time where n is number of nodes and O(n) space where n is the dummy list
+
+RECURSIVE ANSWER
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        if l1 == None:
+            return l2
+        if l2 == None:
+            return l1
+        
+        if l1.val < l2.val:
+            l1.next = self.mergeTwoLists(l1.next, l2)
+            return l1
+     
+        else:
+            l2.next = self.mergeTwoLists(l1, l2.next)
+            return l2
+        
+# first check if either list is null, will append either l1/l2 which ever is empty at the end 
+# compares front of lists. if l1 is less than l2, l1.next is set to recursive call of merge(l1.next, l2) and returns l1 and vice versa
+# at base case it will return one of the non empty lists and works it's way back up recursive stack
+# each previous stack sets the .next and returns the l1 or l2 in that call. for example
+# l1 = 1, 6       l2 = 3, 7
+# base call        first call is merge(l1 = 1 ,  l2 =  3)
+# CALL ONE        1 is less than 3 so l1.next with merge(l1 = 6, l2 = 3) is called
+# CALL TWO      3 is less than 6 so l2.next with merge(l1 = 6, l2 = 7) is called
+# call THREE       6 is less than 7 so l1.next with merge(null, l2 = 7 ) is called
+# since one of the lists are null 7 is passed back up to call three
+# call three sets 7 l1.next...l1 is 6 here, so 6 -> 7 and returns 6 back up to call two
+# call two sets 6 as l2.next which is 3 -> 6 and returns l2 to call one which is 3
+# call one sets 3 as l1.next...l1 is 1 so its 1 -> 3 and finally returns l1..the head of the newly sorted list

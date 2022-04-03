@@ -1,0 +1,39 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+       
+        if not root: 
+            return None
+        
+        temp = root.left
+        root.left = root.right
+        root.right = temp
+        
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        
+        return root
+
+        
+        
+# Given the root of a binary tree, invert the tree, and return its root.
+
+ 
+
+# Example 1:
+
+
+# Input: root = [4,2,7,1,3,6,9]
+# Output: [4,7,2,9,6,3,1]
+
+# explanation
+# o(n) time o(1) space unless recursive stack counts
+# if root is null return none
+# keep temp variable to hold left value. swap left with right and then right with temp
+# recursively call on self.root.left and then right
+# careful with using while loops instead, i believe it just keep going on a null root vs returning none like the above code

@@ -1,0 +1,35 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSubtree(self, s: Optional[TreeNode], t: Optional[TreeNode]) -> bool:
+        if not t:
+            return True
+        if not s:
+            return False
+        if self.sameTree(s, t):
+            return True
+        return (self.isSubtree(s.left, t) or self.isSubtree(s.right, t))
+
+    def sameTree(self, s, t):
+        if not s and not t:
+            return True
+        if s and t and s.val == t.val:
+            return (self.sameTree(s.left, t.left) and self.sameTree(s.right, t.right))
+
+        return False
+
+
+# explanation
+# o(s * t) where s and t are the trees and upper bounded by number of possible times youll have to check
+# o(1) because nothing is created
+# check if t isnt null first because null subtree would be subtree of any tree
+#  if s is null tho after t is checked then false because a subtree can not be a subtree of a null tree
+# define helper function that checks if both roots are null and have same value then recursively DFS traverses down the tree if True
+# returns true if btoh left and right traversals return true
+# else if at that particular s and t are false, then recursively call main function on s.left and t and s.right and t
+# return true if that check returns true on one OR the other subtree checks
+# this problem is 2nd step to same tree check problem leetcode 100

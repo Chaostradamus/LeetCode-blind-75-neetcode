@@ -1,0 +1,42 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        q = collections.deque()
+        q.append(root)
+        
+        while q:
+            qlen = len(q)
+            level = []
+            for i in range(qlen):
+                node = q.popleft()
+                if node:
+                    level.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if level:
+                res.append(level)
+        return res
+
+# Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
+ 
+
+# Example 1:
+
+
+# Input: root = [3,9,20,null,null,15,7]
+# Output: [[3],[9,20],[15,7]]
+#  make a queue and a result array first
+# insert root into q
+# while q is not empty, qlen = length of q and level = empty array. this tells us to loops thruogh the appropriate amount of times
+# where qlen is the number of items in the q at given level. level as an empty array each time empties out the level after appending so you start new 
+# on each level
+# loop through qlen amount of times...pop node from left and if there is a node, add that value to level array and then add children of node to queue
+# after qlen loops are done, append level to result array to get grouped level order appending to aarray
+# o(n) time nd space where n is amount of nodes and size of result array and queue

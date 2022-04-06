@@ -1,0 +1,40 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder or not inorder:
+            return None
+        
+        root = TreeNode(preorder[0])
+        mid = inorder.index(preorder[0])
+        
+        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
+        root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
+        
+        return root
+
+
+# Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree.
+
+ 
+
+# Example 1:
+
+
+# Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+# Output: [3,9,20,null,null,15,7]
+
+
+# im flabberghasted by this one
+# o(n) space because building one output array. o(n + m ) time where n and m are lengths of the two trees
+# since preorder takes root first. we use that info to find that in inorder array and parse the info from there.
+# everything to the left of that number in inorder array will be left subtree and everything to the right will be right subtree
+#  in the recursive calls, left will be preorders first index +1 since index 0 is the root and you want to parse the rest of it, up until mid
+# we know it is up until mid because inorder arrays left tells us where to stop
+# the recursive call on the right will both be [mid + 1 :] to parse the rest of the tree.
+#  on the next call the 0th index of the preorder will be the root nd the steps will repeat again
+# its magic

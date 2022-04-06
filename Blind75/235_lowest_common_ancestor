@@ -34,4 +34,6 @@ Explanation: The LCA of nodes 2 and 8 is 6. -->
 <!-- since an answer is guaranteed, it's much easier than you think
 o(log n) time and o(1) space because time gets cut in half by each level of height of tree and no extra data structures are created
 set current to the root and then check if p and q are less than or equal to it. if its greater than then go right and vice versa
-once it's doesnt meet the criteria where both p and q are less than/greater than, that is where they split and that would be their lowest common ancestor -->
+once it's doesnt meet the criteria where both p and q are less than/greater than, that is where they split and that would be their lowest common ancestor
+
+BE CAREFUL ON THE CHECK. IF YOU DO IF P.VAL AND Q.VAL > thn that could mean if P exists and then q is greater than versus if theyre both greater than -->

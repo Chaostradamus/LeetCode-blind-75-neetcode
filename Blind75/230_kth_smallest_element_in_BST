@@ -1,0 +1,96 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# iterative
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        n = 0
+        stack = []
+        cur = root
+        
+        while cur or stack:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            
+            cur = stack.pop()
+            n += 1
+            if n == k:
+                return cur.val
+            cur = cur.right
+            
+
+# iterative solutino
+#  o(n) time and space where n = number of nodes and n is stack space
+# set a counter to when N  == K then you can return K without going through full tree
+# initilize stack and set curr pointer to root
+# while there is a cur or stack isnt empty...add current to stack and traverse left
+# once left is null set pointer current back to top of popped stack and increase counter
+# if counter = K then just return, otherwise go right of current now
+# append, go left until you cant, pop back to parent and then go right then pops back up to grandparent
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+
+        def answer(node):
+            if not node:
+                return []
+            return answer(node.left) + [node.val] + answer(node.right)
+
+        li = answer(root)
+        return li[k-1]
+
+
+# recursive solution
+# define a recursion function
+# if not node itll return empty
+# recursively call on left + add value of node + right
+# li = function call on root which will give you the full array
+# return array at index k-1 because of indexing
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        temp = []
+
+        self.answer(root, temp, k)
+
+        return temp[k-1]
+
+    def answer(self, root: TreeNode, temp: List, goal: int):
+
+           if not root:
+                return
+            self.answer(root.left, temp, goal)
+
+            if goal != len(temp):
+                temp.append(root.val)
+                self.answer(root.right, temp, goal)
+
+
+# recursive solution with checks to reduce time
+# initialize temp list
+# answer function takes in root = node, temp = list, goal = int
+# if root is null return
+# call function on left and pass down temp list and goal
+# CHECK IS HERE if goal doesnt == length of temp array then continue...this means once goal and temp meet , return answer
+# this works because if k = 3 then the 3rd number you append will be the answer
+# otherwise append the value and then call function on right while passing down temp and goal
+# in main area call function on root and pass in an array and goal
+# return temp array with index of k -1

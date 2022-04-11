@@ -8,24 +8,24 @@ class Solution:
              return map[diff], i
             map[n] = i
             
-time  (n) upper bounded by # of items in nums 
-space o(n) created map
+# time  (n) upper bounded by # of items in nums 
+# space o(n) created map
 
             
-    store difference and index in map for o(1) instant lookup for answer
-    key is that there is a guarantee of 1 answer so edge case of none is taken care of
-    example
+#     store difference and index in map for o(1) instant lookup for answer
+#     key is that there is a guarantee of 1 answer so edge case of none is taken care of
+#     example
 
-    nums = 2, 7, 11, 15 and target 9
+#     nums = 2, 7, 11, 15 and target 9
     
-    2 maps to index 0
-    7 maps to index 1
-    11 maps to index 3
-    15 maps to index 4
+#     2 maps to index 0
+#     7 maps to index 1
+#     11 maps to index 3
+#     15 maps to index 4
 
-    if diff is in map then return map[index], and i
-     diff is first 9 - 2 = 7...map is empty so map key 2 value 0
-     diff is 2 and 2 is in map so return the map @ difference and that current iteration i
-     answer would be 2, and 1..... 2 + 7 = 9
+#     if diff is in map then return map[index], and i
+#      diff is first 9 - 2 = 7...map is empty so map key 2 value 0
+#      diff is 2 and 2 is in map so return the map @ difference and that current iteration i
+#      answer would be 2, and 1..... 2 + 7 = 9
 
-     because there HAS to be an answer, finding the difference will always map to the correct value and index and if stored in map already will return the two answers
+#      because there HAS to be an answer, finding the difference will always map to the correct value and index and if stored in map already will return the two answers

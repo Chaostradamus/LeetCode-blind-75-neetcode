@@ -1,0 +1,45 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res = defaultdict(list)
+        
+        for s in strs:
+            count = [0] * 26
+            
+            for c in s:
+                count[ord(c)-ord("a")] += 1
+                
+            res[tuple(count)].append(s)
+            
+        return res.values()
+
+
+# Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+# An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+
+# Example 1:
+
+# Input: strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+# Output: [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]]
+# Example 2:
+
+# Input: strs = [""]
+# Output: [[""]]
+# Example 3:
+
+# Input: strs = ["a"]
+# Output: [["a"]]
+
+# o(m* n * 26) where m is total number of input strings, n = average length of each str and 26 = length of count array
+# make result list
+# look through each string
+# create count with 26 0's. 1 for each letter in the alphabet
+#   loop through each character in s:
+#       for each character it will create a key value pair where key is the instance of each letter in the string and valu will be the word
+#        each word that has the same letter combos will be appended in the list to the correct key
+
+# return the values of the result
+
+# dont understand the code but understand the algorithm...not sure how you can loop through each character and update a key and use that as 
+# key in a hashmap

@@ -1,0 +1,53 @@
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        res = 0
+        
+        for i in range(len(s)):
+            res += self.isPally(s, i, i)
+            res += self.isPally(s, i, i +1)
+            
+        return res
+                
+           
+    def isPally(self, s, l, r):
+        res = 0
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            res += 1
+            r += 1
+            l -= 1
+                
+        return res
+
+        
+        
+        
+# Given a string s, return the number of palindromic substrings in it.
+
+
+# A string is a palindrome when it reads the same backward as forward.
+
+# A substring is a contiguous sequence of characters within the string.
+
+
+# Example 1:
+
+# Input: s = "abc"
+# Output: 3
+# Explanation: Three palindromic strings: "a", "b", "c".
+# Example 2:
+
+# Input: s = "aaa"
+# Output: 6
+# Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+
+
+# o(n^2) time and o(1) space
+# same as palindromic substring question
+# set global result variableo first then loop through each character in string
+#    set pointers at same character(i) and check if in bounds AND == and increase res count
+#   then spread l and r outwards and keep checking if it meets conditions
+#   once the checks fails you check for even length strings
+#   then reset l to i and r to i+1 and do the same checks...this is to check adjacent characters from the start before moving
+#    pointers outwards wheresas the firts check is to stat checking from the same character
+#   we can put the palindrome check in a function and just call them twice on i, i, and i, i+1 and return the values as res +=
+#  before finally return final res count

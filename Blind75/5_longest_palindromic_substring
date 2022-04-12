@@ -1,0 +1,52 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        res = ''
+        resLen = 0
+        
+        for i in range(len(s)):
+          
+            l , r = i, i 
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r -l + 1) > resLen:
+                    res = s[l:r+1]
+                    resLen = r - l + 1
+                r += 1
+                l -= 1
+                
+           
+            l , r = i, i + 1 
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r -l + 1) > resLen:
+                    res = s[l:r+1]
+                    resLen = r - l + 1
+                r += 1
+                l -= 1
+                
+        return res
+
+
+# Given a string s, return the longest palindromic substring in s.
+
+
+# Example 1:
+
+# Input: s = "babad"
+# Output: "bab"
+# Explanation: "aba" is also a valid answer.
+# Example 2:
+
+# Input: s = "cbbd"
+# Output: "bb"
+            
+
+
+# o(n^2) n for each character and n for each spread check o(1) space
+# set res to blank and reslen to 0
+# for loop length of string
+#      odd length str
+# set left and right pointers to same spot and check if its in bounds AND == value...will be on first check
+# tthen if r-l +1 is larger than reslen, you can set the new reslen and new result string
+# move left and right pointers away from each other after and keep checking if its in bounds and if characters are the same
+# after odd check at that character goes out of bounds it will check evens by doing l,r at i and i+1 
+# this will start the comparison at two adjacent characters vs at the same character
+

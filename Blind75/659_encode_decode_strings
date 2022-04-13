@@ -1,0 +1,39 @@
+class Solution:
+    def encode(self, str):
+        res = ''
+        for s in strs:
+            res = str(len(s)) + '#' + s
+        return res
+
+
+    def decode(self, str):
+        res, i = [], 0
+
+        while i < len(str):
+            j = i
+            while str[j] != '#':
+                j += 1
+            length = int(str[i:j])
+            res.append(str[j + 1: j + 1 + length])
+            i = j + 1 + length
+        return res
+
+
+    # encode and decode given list of strings to str and str strings back
+    # we use delimiter of a value and pound to denot how long the word is and the delimiter
+    # so 6# will be a word length of 6 and so on
+    # to encode string we will make empty res array  and loop thourhg list of strings
+    # for every string we will append to res the strings length + # + the string and then return result
+
+    # to decode it back we will make an empty result list and i pointer to 0 first
+
+# then while i is less than the strings length to stay in bounds
+# we set j pointer to 1 and increase j until we find a #
+# once we do we hop out of the while loop and set length to string[i:j] ...this gives us the number as an int to set the length
+# say 6# ..i will be 0 and j will be 1 so we will decode 6 in the string as an int and use as length like we wanted
+# we will then append from j +1 , which is the start of string, to j + 1 + length,which will get us the entire string and to the next number
+# for example 3#cat...following above we will start at j +1 , which is 2nd indexed, to to j + 1 +length, which is 5
+# tis will take everything from index 2 to the 5th index non inclusive giving us cat
+# we loop through the entire string until i is out of bounds and return
+# 
+# o(n) time and space on both i believe 

@@ -1,0 +1,40 @@
+  class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        res = [1] * len(nums)
+        
+        for i in range(len(nums) -1, -1, -1):
+            for j in range(i +1, len(nums)):
+                if nums[i] < nums[j]:
+                    res[i] = max(res[i], 1 + res[j])
+        
+        return max(res)
+
+
+# Given an integer array nums, return the length of the longest strictly increasing subsequence.
+
+# A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3, 6, 2, 7] is a subsequence of the array[0, 3, 1, 6, 2, 2, 7].
+
+
+# Example 1:
+
+# Input: nums = [10, 9, 2, 5, 3, 7, 101, 18]
+# Output: 4
+# Explanation: The longest increasing subsequence is [2, 3, 7, 101], therefore the length is 4.
+# Example 2:
+
+# Input: nums = [0, 1, 0, 3, 2, 3]
+# Output: 4
+# Example 3:
+
+# Input: nums = [7, 7, 7, 7, 7, 7, 7]
+# Output: 1
+
+
+# o(n^2)  time and o(n) space
+# we make a result array with all 1's since that would be the minimum longest subsequence
+# we loop through i times from the back of nums array
+        # we for loop j times starting from i +1: to length of nums
+        # this means our first loop is dead and we start comparingi to j:end of nums
+        #   if i is less than j, we take max of current res[i] or 1 + res[j]
+        # here this means we take current res[i] as the longest current sub or we take res[j], in that case we add 1 to add and update at [i]
+        # since it is a list, we can return max(res) to get the largest number which would be th elongest subsseq

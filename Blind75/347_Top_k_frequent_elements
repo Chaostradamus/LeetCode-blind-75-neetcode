@@ -1,0 +1,46 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = {}
+        freq = [[] for i in range(len(nums) + 1)]
+        
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+        for n, c in count.items():
+            freq[c].append(n)
+            
+        res = []
+        for i in range(len(freq) -1, 0, -1):
+            for n in freq[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
+
+
+# Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+
+
+# Example 1:
+
+# Input: nums = [1, 1, 1, 2, 2, 3], k = 2
+# Output: [1, 2]
+# Example 2:
+
+# Input: nums = [1], k = 1
+# Output: [1]
+
+# initialize count hashmap
+# initialize freq array with buckets where buckets number is for i in range len(nums) +1
+#  for each n in nums
+#    update each hashmap with key as the nuber and value as the count
+#  for each n and c where n is the number and C is the count being used as the index
+#       update freq at C(index) with the n which is the value that occurs C index times
+# 
+# make res array to return
+# 
+# for i in rnge of freq array starting from the back and going in descending order
+#           for every n in freq[i]...this is digging into the bucket after you arrive at the bucket
+#                   append that value list to res
+                        # if the length of rseult = 2 then return because they only wanted top 2 occurences
+
+# i think adding or diggin up from empty bucket doesnt count towards the length
+# o (n) run and space

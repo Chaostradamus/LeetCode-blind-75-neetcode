@@ -1,0 +1,46 @@
+# o(n *m) time and space where n is characters in string times m where m is words in dictionary
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        # instantiazes dp array that is size len of s + 1 where the extra 1 is the base case of True
+        dp = [False] * (len(s) +1)
+        
+        dp[len(s)] = True
+        
+        # loops through each character in S from the back
+        for i in range(len(s) -1, -1, -1):
+            # loops through each word
+            for w in wordDict:
+                # if from the ith spot to the len(word) spot is the same, then we can set dp[i] to TRUE
+                if (i + len(w)) <= len(s) and s[i : i + len(w)] == w:
+                    # loops through every word from ith spot to i+len(word) spot to find matches
+                    dp[i] = dp[i + len(w)]
+                    # if dp[i] already true then break out
+                if dp[i]:
+                    break
+                    
+        return dp[0]
+
+
+# Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+# Note that the same word in the dictionary may be reused multiple times in the segmentation.
+
+
+# Example 1:
+
+# Input: s = "leetcode", wordDict = ["leet", "code"]
+# Output: true
+# Explanation: Return true because "leetcode" can be segmented as "leet code".
+# Example 2:
+
+# Input: s = "applepenapple", wordDict = ["apple", "pen"]
+# Output: true
+# Explanation: Return true because "applepenapple" can be segmented as "apple pen apple".
+# Note that you are allowed to reuse a dictionary word.
+# Example 3:
+
+# Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
+# Output: false
+
+

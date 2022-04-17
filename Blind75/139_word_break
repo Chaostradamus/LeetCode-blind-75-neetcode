@@ -1,4 +1,5 @@
-# o(n *m) time and space where n is characters in string times m where m is words in dictionary
+# o(n *m * n) time and space where n is characters in string times m where m is words in dictionary * n
+# where last n is number of checks per charcter
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:

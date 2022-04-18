@@ -1,0 +1,58 @@
+# o(n * p)  where n is number of nodes and p is number of prereqs
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # put all nodes and egdes in hashmap where i is crs and is mapped to pre which are the prereqs
+        # make it size i: mapped to number of courses
+        preMap = {i:[] for i in range(numCourses)}
+        for crs, pre in prerequisites:
+            preMap[crs].append(pre)
+            
+            # make visited set to detect a loop and return false immediately
+        visited = set()
+
+        # dfs function 
+        def dfs(crs):
+            # base case detects if its been visited then its a loop or if its empty rhen no prereqs required
+            if crs in visited:
+                return False
+            if preMap[crs] == []:
+                return True
+# add current iteration cr to visted
+            visited.add(crs)
+            # for every key crs in premap, call dfs on it's prereqs and return false if not true
+            for pre in preMap[crs]:
+                if not dfs(pre): return False
+                # after done searching tht brnch, remove it from visited hashset
+                # set thepremap at key crs iteration's value to be empty
+                # means youve checked or there are no prereqs so its fine
+            visited.remove(crs)
+            preMap[crs] = []
+            return True
+
+            # must loop through all courses this way because it may not be connect such as
+            # [0,1] and [2,3]
+        for crs in range(numCourses):
+            if not dfs(crs): return False
+        return True
+
+# There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+
+# For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+# Return true if you can finish all courses. Otherwise, return false.
+
+ 
+
+# Example 1:
+
+# Input: numCourses = 2, prerequisites = [[1,0]]
+# Output: true
+# Explanation: There are a total of 2 courses to take. 
+# To take course 1 you should have finished course 0. So it is possible.
+# Example 2:
+
+# Input: numCourses = 2, prerequisites = [[1,0],[0,1]]
+# Output: false
+# Explanation: There are a total of 2 courses to take. 
+# To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.
+ 

@@ -8,10 +8,13 @@ class Solution:
             # if the # is a 0 then dp[i] = 0 else it equals the initial mapping of len(s) : 1
             if s[i] == "0":
                 dp[i] = 0
-            else:
+            else:\
+                # current dp[i] is current plus previous as long as it's not a zero character
                 dp[i] = dp[i + 1]
             
             # if index is inbounds AND it's a 1 or its a 2 and within 0-6 then you add dp[i+2] to current dp[i] index
+            # this check if number is inbounds in the indexing and if the the current number is a 1 or if its a 2 then next number
+            # must be 0-6...if so then there are 2 ways to decode it rather than 1
             if (i +1 < len(s) and (s[i] == "1" or
                                   s[i] == "2" and s[i+1] in "0123456")):
                 dp[i] += dp[i+2]

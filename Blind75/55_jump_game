@@ -1,0 +1,34 @@
+# o(n) time  o(1) space
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        # set goal as last index of nums 
+        goal = len(nums) -1
+        
+        # loops through from the back of nums
+        for i in range(len(nums) -1, -1, -1):
+            # if at current index which is i, plus current index max jump length value can reach goal index
+            # then set goal to current index...which essentially moves the goal closer to start so you dont have to reach the end
+            # just have to reach current index
+            if i + nums[i] >= goal:
+                goal = i
+        
+        # if goal reaches 0th index then return true bc you can reach the end else false
+        return True if goal == 0 else False
+
+
+# You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.
+
+# Return true if you can reach the last index, or false otherwise.
+
+
+# Example 1:
+
+# Input: nums = [2, 3, 1, 1, 4]
+# Output: true
+# Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+# Example 2:
+
+# Input: nums = [3, 2, 1, 0, 4]
+# Output: false
+# Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.

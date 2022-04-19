@@ -1,0 +1,64 @@
+# should be o(n) run and space due to caching visited cells
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+# create rows and cols equal les of both to set bounds for later
+        # create visit set to cache visited cells and an island count
+        rows, cols = len(grid), len(grid[0])
+        visit = set()
+        islands = 0
+        
+
+        # bfs function that creates a que then adds cell to visited then appends current cell to the q
+        # while que isnt empty, pop from left of que
+        # we set directions as show down up right left
+        # we traverse through the directions we can and check if that current cell is in bounds, is a 1 and not already in visit
+        # if yes then append that to que and add to visit...we append so we can next pop and check its children for eligible cells also
+        def bfs(r, c):
+            q = collections.deque()
+            visit.add((r,c))
+            q.append((r,c))
+            while q:
+                row, col = q.popleft()
+                directions = [[1,0],[-1,0],[0,1],[0,-1]]
+                for dr, dc in directions:
+                    r,c = row +dr, col +dc
+                    if(r in range(rows) and c in range(cols) and grid[r][c] =='1' and (r,c) not in visit):
+                        q.append((r,c))
+                        visit.add((r,c))
+                        
+
+        # this snippet here loops through each row by column and check if its eligible island and not visited, else we run bfs on it
+        # once we pop out of a bfs call, we can say this section searched is an island and increase count
+        # return islands at end
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] =='1' and(r,c) not in visit:
+                    bfs(r,c)
+                    islands +=1
+        return islands
+
+
+# Given an m x n 2D binary grid grid which represents a map of '1's(land) and '0's (water), return the number of islands.
+
+# An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+
+# Example 1:
+
+# Input: grid = [
+#     ["1", "1", "1", "1", "0"],
+#     ["1", "1", "0", "1", "0"],
+#     ["1", "1", "0", "0", "0"],
+#     ["0", "0", "0", "0", "0"]
+# ]
+# Output: 1
+# Example 2:
+
+# Input: grid = [
+#     ["1", "1", "0", "0", "0"],
+#     ["1", "1", "0", "0", "0"],
+#     ["0", "0", "1", "0", "0"],
+#     ["0", "0", "0", "1", "1"]
+# ]
+# Output: 3

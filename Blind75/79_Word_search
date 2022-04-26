@@ -1,0 +1,53 @@
+#  o(n * m * 4^n) n and m are the dimensions of the board and 4^n is the number of operations per cell up left down right
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        # set rows and cols for boundaires
+        # create set for visited cells
+        Rows, Cols = len(board), len(board[0])
+        path = set()
+        
+        # dfs function 
+        # checks if i has found enough letters to match length of word which means word was found
+                # boundary checks that cell is within rows and col boundaries
+                # boundary checks if the word at current(i) iteration matches current cell we are at
+                # boundary checks on if current cell is in visited set
+                # all will return false on current recursive call
+        # if passes checks then we can safely add cell to visited set and set res as dfs call on up down left right dfs calls
+        # if none of them return true then we can remove the main cell from visited or the current caller cell from visited until it 
+        # pops up to first caller
+        def dfs(r, c, i):
+            if i == len(word):
+                return True
+            if(r < 0 or c < 0 or
+              r >= Rows or c >= Cols or
+              word[i] != board[r][c] or
+              (r,c) in path):
+                return False
+            
+            path.add((r,c))
+            # if one of them return true we can move on but if all return false then that original call returns false as res variable
+            res =   (dfs(r + 1, c,i + 1) or
+                    dfs(r -1,c ,i + 1) or
+                    dfs(r, c +1, i + 1) or
+                    dfs(r, c -1,i + 1))            
+            path.remove((r,c))
+            return res
+        
+        # loops through m *n matrix and calls dfs on each cell and returns if true else we return false
+        for r in range(Rows):
+            for c in range(Cols):
+                if dfs(r,c,0): return True
+                    
+        return False
+
+
+# Given an m x n grid of characters board and a string word, return true if word exists in the grid.
+
+# The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
+
+
+# Example 1:
+
+
+# Input: board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], word = "ABCCED"
+# Output: true

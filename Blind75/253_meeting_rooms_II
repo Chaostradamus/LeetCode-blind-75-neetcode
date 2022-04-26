@@ -1,0 +1,75 @@
+from typing import (
+    List,
+)
+from lintcode import (
+    Interval,
+)
+
+"""
+Definition of Interval:
+class Interval(object):
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+"""
+
+class Solution:
+    """
+    @param intervals: an array of meeting time intervals
+    @return: the minimum number of conference rooms required
+    """
+    def min_meeting_rooms(self, intervals: List[Interval]) -> int:
+        # Write your code here
+        # o(nlogn)
+        # sort interval.start and by end in 2 separate arrays
+        start = sorted([i.start for i in intervals])
+        end = sorted([i.end for i in intervals])
+
+# hold res and count to keep count of rooms and the max
+# s and e are pointers for the 2 arrays
+        res, count = 0, 0
+        s, e = 0, 0
+
+        # while s is within range of number of intervals
+        # if a start time is less than end time than we know there needs to be another meeting room
+        # increment meeting count by 1 and move s pointer
+        while s < len(intervals):
+            if start[s] < end[e]:
+                s += 1
+                count += 1
+                # else if ending time is less than a start time at current pointer, then we know a meeting ended
+                # we decrement meeting rooms needed count and move e along
+            else:
+                e +=1
+                count -= 1
+                # keep track of highest count achieved to return
+            res = max(res, count)
+        return res
+
+        # logic is that if start times at current index in Start array are less than current index at end array
+        # we will need new rooms because meetings are still ongoing and havent ended yet
+        # else if start time is greater than end time, then we know a meeting has ended so we can 
+        # shutdown a meeting room 
+
+# Description
+
+
+# Given an array of meeting time intervals consisting of start and end times[[s1, e1], [s2, e2], ...](si < ei), find the minimum number of conference rooms required.)
+
+# (0, 8), (8, 10) is not conflict at 8
+
+# Example
+# Example1
+
+# Input: intervals=[(0, 30), (5, 10), (15, 20)]
+# Output: 2
+# Explanation:
+# We need two meeting rooms
+# room1: (0, 30)
+# room2: (5, 10), (15, 20)
+# Example2
+
+# Input: intervals=[(2, 7)]
+# Output: 1
+# Explanation:
+# Only need one meeting room

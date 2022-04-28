@@ -1,0 +1,69 @@
+# o (n * m) time and o(1) space
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+    # set pointers top left right bottom. right and bottom are set as len so its out of bounds by 1 for easier coding
+        res = []
+        left, right = 0, len(matrix[0])
+        top, bottom = 0, len(matrix)
+        
+
+        # while pointers are within bounds, we append the top row going left to right. since we stay in top row
+        # matrix first value is constant at top row which is 0 and i will shift till the end appending each value in row
+        # then we increent top to signal pointer going down one
+        while left < right and top < bottom:
+            for i in range(left, right):
+                res.append(matrix[top][i])
+            top += 1
+            
+            #  next we go top to bottom
+            # constant here is the column so first value is i and second vlue is constant of right -1 to get in bounds
+            # we then decrement right to move in
+            for i in range(top, bottom):
+                res.append(matrix[i][right-1])
+            right -=1
+            
+            # checks to make sure its not a one variable array, in that case we break out
+            # [1, 2, 3]
+            # or [1]
+            #    [2]
+            #    [3]
+            if not(left < right and top < bottom):
+                break
+                
+                # next we go from right to left....tricky here because we shift left out o fbounds by doing -1
+                # and we shift right once more in to get to correct place after going from previous top to down
+                # we do this in reverse order also of that given row so -1 as last parameter
+                # then we shhift bottom up 
+                # we append with constant first because we are collecting from tht row and iterating by column
+            for i in range(right -1, left -1, -1):
+                res.append(matrix[bottom -1][i])
+            bottom -= 1
+            
+            # same as left and right
+            # we shift bot and top over one to kick bottom in bounds and top one out of bounds so we can traaverse to everything
+            # we append by shifting row so second value will be constant and first will be i
+            # we then increment left to shift it in
+            for i in range(bottom -1, top -1, -1):
+                res.append(matrix[i][left])
+            left += 1
+# return res at end. basically we traverse top row left to right, then right column top down, then bottom row right to left
+# then leftmost column bottom to top and repeat while shifting pointers
+# extra -1 on some shifts to push in bounds and kick out of bounds to be able to iterating to everything 
+        return res
+
+
+
+# Given an m x n matrix, return all elements of the matrix in spiral order.
+
+
+# Example 1:
+
+
+# Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+# Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+# Example 2:
+
+
+# Input: matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+# Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]

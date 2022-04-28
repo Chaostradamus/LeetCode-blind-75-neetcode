@@ -6,6 +6,7 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         # hold row and col length variables and rowZero is [0][0] cell set to false
+        # we do the rowZero to hold indicator to zero out the first row or not
         ROWS, COLS =   len(matrix), len(matrix[0])
         rowZero = False
         
@@ -16,6 +17,7 @@ class Solution:
             for c in range(COLS):
                 if matrix[r][c] == 0:
                     matrix[0][c] = 0
+                    # we do this because we already set this row with rowZero so this is meant to check every row except 1st one
                     if r > 0:
                         matrix[r][0] = 0
                     else:

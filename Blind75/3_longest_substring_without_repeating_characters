@@ -1,0 +1,42 @@
+# o(n) time and space where n is set created for space and n is length of iterations of string
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # create set to detect duplicates and then set result  variableand left pointer
+        charSet = set()
+        l = 0
+        res = 0
+        
+        # loops through len of (s) times non last number inclusive
+        for r in range(len(s)):
+            # while tht character is in the set, we pop it off the set and move left pointer until the subarray is all distinct
+            while s[r] in charSet:
+                charSet.remove(s[l])
+                l += 1
+            # else at current iteration we add that character to the set and then calculate the max
+            # by taking max of current res or right - left + 1. This calculation gives us the length of the substring and we add 1 due to
+            # zero indexing
+            charSet.add(s[r])
+            res = max(res, (r -l) + 1)
+        return res
+# classic sliding window technique
+
+# Given a string s, find the length of the longest substring without repeating characters.
+
+
+# Example 1:
+
+# Input: s = "abcabcbb"
+# Output: 3
+# Explanation: The answer is "abc", with the length of 3.
+# Example 2:
+
+# Input: s = "bbbbb"
+# Output: 1
+# Explanation: The answer is "b", with the length of 1.
+# Example 3:
+
+# Input: s = "pwwkew"
+# Output: 3
+# Explanation: The answer is "wke", with the length of 3.
+# Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.

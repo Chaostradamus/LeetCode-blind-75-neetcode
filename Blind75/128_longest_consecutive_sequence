@@ -1,0 +1,40 @@
+# o(n) time and space where n is length of nums and the hashset
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        # create hashset and longest to hold max
+        newSet = set(nums)
+        longest = 0
+        
+        # loop through nums and check if number -1 isnt in set, that means its the start of a sequence and we can look further
+        # set length to 1 and then check if number plus length is in set
+        # if it is length will increase by 1 so you can looksequentially 
+        # at the end of that sequence youll take it as new longest or longest from previous iterations
+        # return longest
+
+        for n in nums:           
+            if (n-1) not in newSet:
+        # we set length here and not outside because length will be reset every time when we start a new sequqnce
+        # if we set length globaly then that number will just increase EVERY TIME THERES A NEXT IN SEQUENCE VS RESETTING
+        # BSACK TO 1 FOR NEW SEQUENCES
+                length = 1     
+                while (n + length) in newSet:
+                    length +=1
+                longest = max(length, longest)
+        return longest
+
+
+# Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+
+# You must write an algorithm that runs in O(n) time.
+
+
+# Example 1:
+
+# Input: nums = [100, 4, 200, 1, 3, 2]
+# Output: 4
+# Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+# Example 2:
+
+# Input: nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]
+# Output: 9

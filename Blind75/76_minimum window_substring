@@ -1,0 +1,81 @@
+# o(n) time and space
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        # base case of empty T so return empty
+        
+        if t == '': return ''
+        
+        # populatecountT with T values and count
+        countT, window = {}, {}
+        for c in t:
+            countT[c] = 1 + countT.get(c, 0)
+            
+            # set have and needs where have is how many characters in window match characters in countT map
+            # instantiate res to be -1,-1 bc it'll be changed and length to infinity because that will be changed
+            # left pointer to 0
+        have, need = 0, len(countT)
+        res, resLen = [-1, -1], float('infinity')
+        l = 0
+        
+
+        # begin looping through string s and add characters to window hashmap
+        # if character which is c=s[r] where r is right pointer basically
+        # if its in countT and that character in window and count are equal values, have plus 1
+        for r in range(len(s)):
+            c = s[r]
+            window[c] = 1 + window.get(c, 0)
+            
+            if c in countT and window[c] == countT[c]:
+                have += 1
+            
+            # if while and need are equal we can run checks
+            # first check if window length with current pointers are less than resLen
+            # if so then we update the res with current pointers and length to new minimum
+            while have == need:
+                 if (r - l + 1) < resLen:
+                    res = [l, r]
+                    resLen = (r - l + 1)
+                    # then we decrement that character in windows by 1
+                    # if current character we are at is in both count and then removing it makes the counts in countT and
+                    # window not ==, we -= 1 to have counter
+                 window[s[l]] -= 1
+                 if s[l] in countT and window[s[l]] < countT[s[l]]:
+                    have -= 1
+                    # shift left pointer
+                 l += 1                
+                #  set l and r to res which will be [x,x]
+        l, r = res
+        # return substring of s from l to right +1 for index error if the resLen isnt infinity or else we return blank
+        # HAVE AND NEED ARE NOT TOTAL COUNTS FOR CHARACTERS LIKE A,2 AND A,2 IN BOTH MAPS DONT = 4
+        # HAVE AND NEED ARE HOW MANY VALUES MATCH QUOTA IN COUNT.T SO A,2 A,2 COUNT AS 1 AND SO ON
+        return s[l:r+1] if resLen != float('infinity') else ''
+
+
+
+
+# Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+
+# The testcases will be generated such that the answer is unique.
+
+# A substring is a contiguous sequence of characters within the string.
+
+ 
+
+# Example 1:
+
+# Input: s = "ADOBECODEBANC", t = "ABC"
+# Output: "BANC"
+# Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+# Example 2:
+
+# Input: s = "a", t = "a"
+# Output: "a"
+# Explanation: The entire string s is the minimum window.
+# Example 3:
+
+# Input: s = "a", t = "aa"
+# Output: ""
+# Explanation: Both 'a's from t must be included in the window.
+# Since the largest window of s only has one 'a', return empty string.
+    

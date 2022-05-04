@@ -1,0 +1,85 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+# o(n log K)time where n is each node and K is the number of lists halving each time for each merging
+# o(n) space
+ 
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+# return none if there arent any lists or its empty
+        if not lists or len(lists) == 0:
+            return None
+        
+        # while lists contain more than 1 list
+        # create temp mergeLists and loop through lists
+        # l1 is current iteration and l2 is i+1th iteration
+        # if l2 isnt there then its null
+        # append margeList function call of l1 and l2 to mergedLists
+    # assign that to lists so we can safely reset mergeLists without losing the merged lists
+    # this will loop through lists 2 by 2 until there is only one final list of one and we return first list 
+    # cause thats the only one there
+        while len(lists) > 1:
+            mergedLists = []            
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                l2 = lists[i +1] if (i+1) < len(lists) else None
+                mergedLists.append(self.mergeList(l1, l2))
+            lists = mergedLists
+            
+        return lists[0]
+    
+    def mergeList(self, l1, l2):
+        # mergelist function take l1 and l2 from top and creates dummy node in case one is empty
+        # sets a tail pointer to dummy
+        dummy = ListNode()
+        tail = dummy
+        
+        # while there is an l1 and l2 we compare first values
+        # if l1.val is less than l2.val then we srt tail.next to l1 and move l1 pointer over to next
+        while l1 and l2:
+            if l1.val < l2.val:
+                tail.next = l1
+                l1 = l1.next
+                # else case that means l2 is smaller and we set tail.next to l2 and l2 pointer moves over to l2.lnext
+            else:
+                tail.next = l2
+                l2 = l2.next
+                # we then move tail to tail.next pointer each time
+            tail = tail.next
+            # this is for if one list is empty it will append the rest of it for either l1 or l2
+        if l1:
+            tail.next = l1
+        if l2:
+            tail.next = l2
+            # we return refernce to the entire sorted list by returning dummy.next since dummy is the head  of the list
+        return dummy.next
+
+
+# You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+
+# Merge all the linked-lists into one sorted linked-list and return it.
+
+
+# Example 1:
+
+# Input: lists = [[1, 4, 5], [1, 3, 4], [2, 6]]
+# Output: [1, 1, 2, 3, 4, 4, 5, 6]
+# Explanation: The linked-lists are:
+# [
+#     1 -> 4 -> 5,
+#     1 -> 3 -> 4,
+#     2 -> 6
+# ]
+# merging them into one sorted list:
+# 1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6
+# Example 2:
+
+# Input: lists = []
+# Output: []
+# Example 3:
+
+# Input: lists = [[]]
+# Output: []

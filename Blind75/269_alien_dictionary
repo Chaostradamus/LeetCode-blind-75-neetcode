@@ -1,0 +1,64 @@
+from typing import (
+    List,
+)
+
+class Solution:
+    """
+    @param words: a list of words
+    @return: a string which is correct order
+    """
+    # o(N) time and space whereN is size of set but indegree is cnostant time for alphabet size
+    def alien_order(self, words: List[str]) -> str:
+        # adjacency list and indegrees array
+        adjList = {}
+        indegree = [0 for _ in range(26)]
+
+# add characters to adjacency list as sets
+        for word in words:
+            for c in word:
+                if c not in adjList:
+                    adjList[c] = set()
+        
+        # compare first and second word while keeping min length
+        for i in range(1, len(words)):
+            first = words[1-l]
+            second = words[i]
+            length = min(len(first), len(second))
+
+# once we find a non matching character we can use them as characters out and in
+            for j in range(length):
+                if first[j] != second[j]:
+                    charOut = first[j]
+                    charIn = second[j]
+# if charIn isnt in djacency list at charcterOut we can add s its value in key valu epair where key is character out
+# we then set +=1 to charIn ord number to keep track of indegrees of character
+# break out ater we find first non same char
+                    if charIn not in adjList[charOut]:
+                        adjList[charOut].add(charIn)
+                        indegree[ord(charIn) - ord('a')] += 1
+
+                        break
+                    # if theyre the same up to the prefix(length) but first is longer than second
+                    # then we have cycle and its wrong dictionary
+                    # for example bran and bra...same first 3 letters but first has an extra character and should be 
+                    # 2nd in sorting
+            else:
+                if len(first) > len(second):
+                    return ''
+# we now do bfs after everythign is mapped out
+# add all characters in adjlist if their indegrees = 0 meaning nothing goes into it so we can start from those
+        result = ''
+        queue = deque([c for c in adjList if indegree[ord(c) - ord('a')] == 0])
+        # while queue isnt empty we pop from the left and add to res and then check for its neighbors
+        # if we -= 1 to the neighbor and it = 0 , then we can add them to the queue else 
+        # we keep going on with while loop
+        while queue:
+            c = queue.popleft()
+            result += c
+            for neighbor in adjList[c]:
+                indegree[ord(neighbor) - ord('a')] -= 1
+                if indegree[ord(neighbor) - ord('a')] == 0:
+                    queue.append(neighbor)
+
+# return result only if len of result matches len of words adjlist
+        return result if len(result) == len(adjList) else ''

@@ -1,0 +1,13 @@
+class Solution:
+    def containsDuplicates(self, nums: List[int]) -> bool:
+        hashset = set()
+
+        for n in hashset:
+            if n in hashset:
+                return True
+            hashset.add(n)
+        return False
+
+        # o(n) time and space
+        # create hashset and loop through it while adding to hashset if its not found
+        # if found then return false

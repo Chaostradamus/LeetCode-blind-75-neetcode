@@ -1,0 +1,44 @@
+# o (m * n * 26) time where m is number of input strings and n is average len of string...26 is size of count array declartion
+# for each alphabet letter
+# space should be o(n)
+
+class Solution:
+def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+# we use default hashmap/dictionary to deal with edge case where nothing exists yet in hashmap
+    res = defaultdict(list)
+
+# iterate through each string and then by each character
+    for s in strs:
+        count = [0] * 26
+
+        for c in s:
+            # count is an array of 26 zeros
+            # count at ascii value of c += 1
+            count[ord(c) - ord('a')] += 1
+# res at count ( which is ascii count of each word) append the string
+# so for eat  e=1 a=1 t=1 is the key and if the strings count matches that then append that anagram/word
+# using tuple() is python workaround ...lists cannot be keys so change to tuple 
+        res(tuple(count)).append(s)
+
+    return res.values()
+
+    
+    
+# Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+
+# An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+
+# Example 1:
+
+# Input: strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+# Output: [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]]
+# Example 2:
+
+# Input: strs = [""]
+# Output: [[""]]
+# Example 3:
+
+# Input: strs = ["a"]
+# Output: [["a"]]

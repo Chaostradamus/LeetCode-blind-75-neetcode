@@ -49,3 +49,5 @@ set left to left.next.next to "delete" nth node
 we set left to dummy because if we set left to head, then we will land on nth node from the end without a way to have access to previous
 this way we are at previous of nth node and can just set links to after it and thus deleting it
 return dummy instead of head because of edge case in case list is of size 1 and you need to return null
+
+1/16/2023

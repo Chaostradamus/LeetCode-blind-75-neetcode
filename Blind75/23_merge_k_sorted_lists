@@ -83,3 +83,18 @@ class Solution:
 
 # Input: lists = [[]]
 # Output: []
+
+
+1/18
+# edge case of no lists 
+        # while loop to keep running while lists is > 1
+        # empty mergedLists 
+        # loop through lists by pairs in range of 0 to len(lists)
+        # l1 = list[i] ll2 = [i+1] but only if list[i+1] less than len(list) else return none
+        # this is so that you check if there are pairs to merge or you can merge 1 list
+        # call mergeList function on l1 and l2
+        # reinitilize lists = mergeLists so we can later reset mergelists but have the values
+        # return list[0]
+
+        # mergelists function from before
+        

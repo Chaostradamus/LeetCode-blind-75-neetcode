@@ -68,4 +68,44 @@ class Solution:
 # append children and increase depth by 1.
 # every loop through will pop off parent and add children while increasing depth accordingly
 # did not understand at first because order of stack popping was at different levels but since depth is kept correctly i dont think it matters
+
+
+# ITERATIVE SOLUTION
+        # iterative dfs keeping node and depth value for the node
+        # pop and add children , if node for null edge cases
+        # stack =[[root, 1]]
+        # res = 0
+
+        # while stack:
+        #     node, depth = stack.pop()
+        #     if node:
+        #      res = max(res, depth)
+        #      stack.append([node.left, depth +1])
+        #      stack.append([node.right, depth +1])
+        # return res
+
+        # RECURSIVE SOLUTION
+        # call function on itself while taking max at each level
+        # if not root:
+        #     return 0
+        # return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+
+        # iterative BFS
+        # set level to 0 and q to a queue with root 
+        # while theres a q , for i in range length of the q
+        # pop as node and add its left and right then increase level and return
+
+        level = 0
+        q = deque([root])
+
+        while q:
+            for i in range(len(q)):
+                node = q.pop()
+                if node.left:
+                        q.append(node.left)
+                if node.right:
+                        q.append(node.right)
+            level += 1
+        return level
+        
  

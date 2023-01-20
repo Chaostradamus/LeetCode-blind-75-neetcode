@@ -34,3 +34,7 @@ class Solution:
 # these pre checks take care of everything so just call function on both p.left, q.left AND q.right.p.right
 # since we just need a true or false return  just just  return nested calls on both right and left and AND them together
 # dfs search method
+
+
+# 1/20
+# have to make sure the conditonals are correct

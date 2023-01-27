@@ -37,3 +37,6 @@ class Solution:
 # once it's doesnt meet the criteria where both p and q are less than/greater than, that is where they split and that would be their lowest common ancestor
 
 # BE CAREFUL ON THE CHECK. IF YOU DO IF P.VAL AND Q.VAL > thn that could mean if P exists and then q is greater than versus if theyre both greater than -->
+
+# 1/27 we are checking if p and q are both lower or bigger than current to decide where to traverse the tree...if both p and q are not lower/bigger then we found a split or the lowest common ancestor since 
+# the next traversal would be down one single line of subtree

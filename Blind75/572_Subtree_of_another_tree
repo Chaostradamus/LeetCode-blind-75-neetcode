@@ -25,7 +25,7 @@ class Solution:
 
 # explanation
 # o(s * t) where s and t are the trees and upper bounded by number of possible times youll have to check
-# o(1) because nothing is created
+# o(1) space because nothing is created
 # check if t isnt null first because null subtree would be subtree of any tree
 #  if s is null tho after t is checked then false because a subtree can not be a subtree of a null tree
 # define helper function that checks if both roots are null and have same value then recursively DFS traverses down the tree if True

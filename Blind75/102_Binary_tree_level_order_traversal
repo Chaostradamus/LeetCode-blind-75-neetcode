@@ -34,7 +34,7 @@ class Solution:
 # Output: [[3],[9,20],[15,7]]
 #  make a queue and a result array first
 # insert root into q
-# while q is not empty, qlen = length of q and level = empty array. this tells us to loops thruogh the appropriate amount of times
+# while q is not empty, qlen = length of q and level = empty array. this tells us to loop thruogh the appropriate amount of times
 # where qlen is the number of items in the q at given level. level as an empty array each time empties out the level after appending so you start new 
 # on each level
 # loop through qlen amount of times...pop node from left and if there is a node, add that value to level array and then add children of node to queue

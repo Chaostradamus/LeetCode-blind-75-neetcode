@@ -87,3 +87,9 @@ class Trie:
 # 
 # starts with does the same as search but instead of returning the endofword boolean at the end itll just return true if it can get through the for loop
 #  
+
+# 2/26/2023
+# making a new trienode 
+# insert looks to see if there exists a pre-existing insert with same start else itll insert a new treenode with character
+# search  looks at each letter of word and checks with trienodes and returns based on if all letters are found and returns last letters endOfWord value
+# starts with is similar to search  but just returns true once all letters are found rather than return last letters endOfWord value

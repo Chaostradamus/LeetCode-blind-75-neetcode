@@ -38,3 +38,5 @@ class Solution:
 # the recursive call on the right will both be [mid + 1 :] to parse the rest of the tree.
 #  on the next call the 0th index of the preorder will be the root nd the steps will repeat again
 # its magic
+# 2/3/2023 still magical
+# 2/6 starting to figure it out index wise

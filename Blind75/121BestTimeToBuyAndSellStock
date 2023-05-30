@@ -42,3 +42,13 @@ class Solution:
 # 
 # if left is greater than right, reset left to right but right pointer increases by 1 every loop to stay ahead of left
 #return max profits
+
+# 5/30
+
+# 2 pointer solution to hold values
+# left and right with right ahead of right
+# keep right in bounds with while loop for bounding
+#     if the price at left is less than right..find difference and keep a maxprofit..move right pointer
+# else move left ro right pointer and move right up one to keep going
+
+# o of N time but o1 space because we dont have extra space taking but you have to go through prices once

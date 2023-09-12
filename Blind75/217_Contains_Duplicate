@@ -9,6 +9,7 @@ class Solution:
         return False
 
 
+
 #problem: 
 #Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
@@ -32,3 +33,18 @@ class Solution:
  #if brute force, then that should be n*n time but o(1) space
  #for loop through nums and check if each iteration is in hashset. if so , it will return true otherwise we add it to hashset. we return false otherwise
  # o(n) time and o(n) space with this solution
+
+# 5/30 we can sort but that would be logN? . if we just put in hashset itll be oN and oN space but the trade off is fine
+
+# 9/12
+#  return len(set(nums))!=len(nums)
+# one liner where you return length of nums and if duplicate found then it wont match length of nums
+
+#  seen = {}
+        # for num in nums:
+        #     if num in seen and seen[num] >= 1:
+        #         return True
+        #     seen[num] = seen.get(num, 0) + 1
+        # return False
+# hashmap lookup which will include occurences 
+    

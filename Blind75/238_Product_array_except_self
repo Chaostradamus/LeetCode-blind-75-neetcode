@@ -39,3 +39,5 @@ class Solution:
 # return result array
 # trick is to loop through once and then backwards while resetting pre and postfix to get correct numbers
 # still dont relly get the problem or solution
+
+# updated

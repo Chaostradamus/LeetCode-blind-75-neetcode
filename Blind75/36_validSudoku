@@ -1,0 +1,28 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        cols = collections.defaultdict(set)
+        rows = collections.defaultdict(set)
+        squares = collections.defaultdict(set)  # key = (r /3, c /3)
+
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == ".":
+                    continue
+                if (
+                    board[r][c] in rows[r]
+                    or board[r][c] in cols[c]
+                    or board[r][c] in squares[(r // 3, c // 3)]
+                ):
+                    return False
+                cols[c].add(board[r][c])
+                rows[r].add(board[r][c])
+                squares[(r // 3, c // 3)].add(board[r][c])
+
+        return True
+    
+    # create 3 hashsets to keep track of each row and column and then another hashset to keep track of the current square
+    # youre in by dividing r/c by 3
+    # if spot youre at is blank then continue else we'll check if the digit is already in col rows or squares hashset
+    # if it is then return false because its not a valid board
+    # after its done checking itll be True that its a valid board
+    

@@ -25,4 +25,6 @@ class Solution:
     # if spot youre at is blank then continue else we'll check if the digit is already in col rows or squares hashset
     # if it is then return false because its not a valid board
     # after its done checking itll be True that its a valid board
-    
+
+
+    # no backtracking just iterating and checking with 3 hashsets at each block

@@ -7,6 +7,14 @@ class Solution:
                 return True
             hashset.add(n)
         return False
+    
+    # seen = {}
+
+    #  for i, n in enumerate(nums):
+    #     if n in seen and seen[n] >= 1:
+    #       return True
+    #     seen[n] = seen.get(nums[i], 0) + 1
+    #   return False
 
 
 
@@ -50,3 +58,5 @@ class Solution:
 # https://pythontutor.com/render.html#code=class%20Solution%28object%29%3A%0A%20%20%20%20%0A%20%20%20%20def%20containsDuplicate%28self,%20nums%29%3A%0A%20%20%20%20%20%20seen%20%3D%20%7B%7D%0A%20%20%20%20%20%20for%20num%20in%20nums%3A%0A%20%20%20%20%20%20%20%20if%20num%20in%20seen%20and%20seen%5Bnum%5D%20%3E%3D%201%3A%0A%20%20%20%20%20%20%20%20%20%20return%20True%0A%20%20%20%20%20%20%20%20seen%5Bnum%5D%20%3D%20seen.get%28num,0%29%20%2B%201%0A%20%20%20%20%20%20return%20False%0A%20%20%20%0A%20%20%20%20%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%0Aleetcode%20%3D%20Solution%28%29%0Aleetcode.containsDuplicate%28%5B1,2,3,5,6,6%5D%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
     
 # https://leetcode.com/problems/contains-duplicate/
+11/27
+# added my own solution with enumerate

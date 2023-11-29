@@ -1,20 +1,41 @@
-class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count = {}
-        freq = [[] for i in range(len(nums) + 1)]
-        
+class Solution(object):
+    def topKFrequent(self, nums, k):
+           
+       
+      
+        # count = {}
+        # freq = [[] for i in range(len(nums) +1)]
+
+        # for n in nums:
+        #   count[n] = 1 +count.get(n, 0)
+        # for n, c in count.items():
+        #   freq[c].append(n)
+
+        # res = []
+        # for i in range(len(freq) -1, 0, -1):
+        #   for n in freq[i]:
+        #     res.append(n)
+        #     if len(res) == k:
+        #       return res
+        count = {}   
+        # hashmap tp keep track of how many of each value...key = value value = count
+        freq = [[] for i in range(len(nums) +1)]
+        # array of arrays to keep count of freq of a number, index of array is the count of given digitand content of array is the number digit
         for n in nums:
-            count[n] = 1 + count.get(n, 0)
+          count[n] = 1 + count.get(n, 0)
+          # go through nums and update each count of n
         for n, c in count.items():
-            freq[c].append(n)
-            
+          freq[c].append(n)
+          # append to freq ...index = count of frequency and content of said index = the digit that occurs index amount of times
         res = []
         for i in range(len(freq) -1, 0, -1):
-            # descending order last index, till -, decrementing by 1
-            for n in freq[i]:
-                res.append(n)
-                if len(res) == k:
-                    return res
+          # start from the back of freq cause thats where youll find highest occurences
+          for n in freq[i]:
+            # for each # in frequency at ith iteration append the contents of that bucket
+            res.append(n)
+          if len(res) == k:
+            # check if res length matches k and return
+            return res
 
 
 # Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.

@@ -9,8 +9,27 @@ class Solution:
                 count[ord(c)-ord("a")] += 1
                 
             res[tuple(count)].append(s)
+            # list cannot be keys in python so change to a tuple
             
         return res.values()
+    
+    # from typing import List
+# class Solution:
+#     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+#         wordDict = {}
+
+#         for s in strs:
+#             sortedS = str(sorted(s))
+
+#             if sortedS in wordDict:
+#                 wordDict[sortedS].append(s)
+#             else:
+#                 wordDict[sortedS] = [s]
+#         return wordDict.values()
+        
+# leetcode = Solution()
+# leetcode.groupAnagrams(["eat","tea","tan","ate","nat","bat"])
+# gardell's solution
 
 
 # Given an array of strings strs, group the anagrams together. You can return the answer in any order.

@@ -45,3 +45,5 @@ class Solution:
 # key in a hashmap
 
 # https://pythontutor.com/render.html#code=class%20Solution%28object%29%3A%0A%20%20%20%20def%20groupAnagrams%28self,%20strs%29%3A%0A%20%20%20%20%20%20%20%20res%20%3D%20defaultdict%28list%29%0A%0A%20%20%20%20%20%20%20%20for%20s%20in%20strs%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20count%20%3D%20%5B0%5D%20*%2026%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20for%20c%20in%20s%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20count%5Bord%28c%29%20-%20ord%28'a'%29%5D%20%2B%3D%201%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20res%5Btuple%28count%29%5D.append%28s%29%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20return%20res.values%28%29%0A%20%20%20%20%20%20%20%20%0Aleetcode%20%3D%20Solution%28%29%0Aleetcode.groupAnagrams%28strs%20%3D%20%5B%22eat%22,%22tea%22,%22tan%22,%22ate%22,%22nat%22,%22bat%22%5D%29&cumulative=false&curInstr=5&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
+
+# https://leetcode.com/problems/group-anagrams/

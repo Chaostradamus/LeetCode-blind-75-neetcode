@@ -1,17 +1,26 @@
-class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [1] * len(nums)
-        
-        
-        prefix =1
-        for i in range(len(nums)):
-            res[i] = prefix
-            prefix *= nums[i]
-        postfix = 1
-        for i in range(len(nums) - 1, -1, -1):
-            res[i] *= postfix
-            postfix *= nums[i]
-        return res
+class Solution(object):
+    def productExceptSelf(self, nums):
+      # length = len(nums)
+      # product = [1] * length
+
+      # for i in range(1, length):
+      #   product[i] = product[i-1] * nums[i-1]
+
+      # right = nums[-1]
+      # for i in range(length -2, -1, -1):
+      #   product[i] *= right
+      #   right *= nums[i]
+      
+      # return product
+
+      res = [1] * (len(nums))
+      for i in range(1, len(nums)):
+        res[i] = res[i-1] * nums[i-1]
+      postfix= 1
+      for i in range(len(nums) -1, -1, -1):
+        res[i] *= postfix
+        postfix *= nums[i]
+      return res
 
 
 # Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
@@ -39,6 +48,11 @@ class Solution:
 # return result array
 # trick is to loop through once and then backwards while resetting pre and postfix to get correct numbers
 # still dont relly get the problem or solution
+
+# 12/7
+# basically with this algo you go through it once going right then back left while holding previous magic number
+# magic number = postfixed number multiplied by current iterations element of nums to multiply the next number by
+# still dont really get it but algo is clearer
 
 # updated
 # https://pythontutor.com/render.html#code=class%20Solution%28object%29%3A%0A%20%20%20%20def%20productExceptSelf%28self,%20nums%29%3A%0A%20%20%20%20%20%20length%20%3D%20len%28nums%29%0A%20%20%20%20%20%20product%20%3D%20%5B1%5D%20*%20length%0A%0A%20%20%20%20%20%20for%20i%20in%20range%281,%20length%29%3A%0A%20%20%20%20%20%20%20%20product%5Bi%5D%20%3D%20product%5Bi-1%5D%20*%20nums%5Bi-1%5D%0A%0A%20%20%20%20%20%20right%20%3D%20nums%5B-1%5D%0A%20%20%20%20%20%20for%20i%20in%20range%28length%20-2,%20-1,%20-1%29%3A%0A%20%20%20%20%20%20%20%20product%5Bi%5D%20*%3D%20right%0A%20%20%20%20%20%20%20%20right%20*%3D%20nums%5Bi%5D%0A%20%20%20%20%20%20%0A%20%20%20%20%20%20return%20product%0A%20%20%20%20%20%20%20%20%0Aleetcode%20%3D%20Solution%28%29%0Aleetcode.productExceptSelf%28%5B2,%203,%204,%206%5D%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false

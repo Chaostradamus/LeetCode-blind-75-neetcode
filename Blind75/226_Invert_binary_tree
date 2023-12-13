@@ -4,20 +4,39 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+# class Solution:
+#     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
        
-        if not root: 
-            return None
+#         if not root: 
+#             return None
         
-        temp = root.left
-        root.left = root.right
-        root.right = temp
+#         temp = root.left
+#         root.left = root.right
+#         root.right = temp
         
-        self.invertTree(root.left)
-        self.invertTree(root.right)
+#         self.invertTree(root.left)
+#         self.invertTree(root.right)
         
-        return root
+#         return root
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def invertTree(self, root):
+      queue = collections.deque([root])
+
+      while queue:
+        node = queue.popleft()
+        if node:
+          node.left, node.right = node.right, node.left
+          queue.append(node.left)
+          queue.append(node.right)
+      return root
+        
 
         
         
@@ -36,4 +55,4 @@ class Solution:
 # if root is null return none
 # keep temp variable to hold left value. swap left with right and then right with temp
 # recursively call on self.root.left and then right
-# careful with using while loops instead, i believe it just keep going on a null root vs returning none like the above code
+# careful with using while loops instead, i believe it just keeps going on a null root vs returning none like the above code

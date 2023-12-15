@@ -1,0 +1,14 @@
+class Solution(object):
+    def defangIPaddr(self, address):
+        """
+        :type address: str
+        :rtype: str
+        """
+        array = address.split(".")
+        print(array)
+        new_addy = "[.]".join(array)
+        print(new_addy)
+        return new_addy
+        
+
+# split address from the dots then rejoin them with [.] and return

@@ -17,4 +17,4 @@ class Solution(object):
     # 2 pointer solution moving left adn right poiinters
     # check right pointer as you move along with r-1 cause you will run into duplicates in the list with l if not
     # checking l and r in place will get you duplicates but checking r with r-1 will not
-          
+        

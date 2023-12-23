@@ -20,6 +20,8 @@ class Solution(object):
 # while l and r pointers are not at the same spot
         #   if the total is smaller than the target..move L pointer to increase number and vice versa
         #   return inside while loop to save do in constant space
+          
+#   https://pythontutor.com/render.html#code=class%20Solution%28object%29%3A%0A%20%20%20%20def%20twoSum%28self,%20numbers,%20target%29%3A%0A%20%20%20%20%20%20%20%20class%20Solution%28object%29%3A%0A%20%20%20%20def%20twoSum%28self,%20numbers,%20target%29%3A%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20%3Atype%20numbers%3A%20List%5Bint%5D%0A%20%20%20%20%20%20%20%20%3Atype%20target%3A%20int%0A%20%20%20%20%20%20%20%20%3Artype%3A%20List%5Bint%5D%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20l%20,%20r%20%3D%200,%20%28len%28numbers%29%20-1%29%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20while%20l%20!%3D%20r%3A%0A%20%20%20%20%20%20%20%20%20%20total%20%3D%20numbers%5Bl%5D%20%2B%20numbers%5Br%5D%0A%20%20%20%20%20%20%20%20%20%20if%20total%20%3C%20target%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20l%20%2B%3D%201%0A%20%20%20%20%20%20%20%20%20%20if%20total%20%3E%20target%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20r%20-%3D%201%0A%20%20%20%20%20%20%20%20%20%20if%20total%20%3D%3D%20target%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20%5Bl%20%2B1,%20r%20%2B1%5D%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%0Ab%20%3D%20Solution%28%29%0Ab.twoSum%28%5B2,3,4%5D,%206%29&cumulative=false&heapPrimitives=nevernest&mode=edit&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false
         
 
 

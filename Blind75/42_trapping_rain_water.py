@@ -6,8 +6,8 @@ class Solution(object):
         """
         
 
-        
 
+# two pointer solution
 # 42. Trapping Rain Water
 # Hard
 # 30.1K

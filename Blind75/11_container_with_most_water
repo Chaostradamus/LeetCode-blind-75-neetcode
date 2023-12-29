@@ -15,6 +15,8 @@ class Solution:
         return res
 
 
+# https://pythontutor.com/render.html#code=class%20Solution%28object%29%3A%0A%20%20%20%20def%20maxArea%28self,%20height%29%3A%0A%20%20%20%20%20%0A%20%20%20%20%20%20%20res%20%3D%200%0A%20%20%20%20%20%20%20l,%20r%20%3D%200,%20len%28height%29%20-1%0A%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20while%20l%20%3C%20r%3A%0A%20%20%20%20%20%20%20%20%20area%20%3D%20%28r-l%29%20*%20min%28height%5Bl%5D,%20height%5Br%5D%29%0A%20%20%20%20%20%20%20%20%20res%20%3D%20max%28res,%20area%29%0A%20%20%20%20%20%20%20%20%20if%20height%5Bl%5D%20%3C%20height%5Br%5D%3A%0A%20%20%20%20%20%20%20%20%20%20%20l%20%2B%3D1%0A%20%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20r%20-%3D%201%0A%20%20%20%20%20%20%20return%20res%0A%0A%0A%20%20%20%20%20%20%20%20%0Ab%20%3D%20Solution%28%29%0Ab.maxArea%28%5B-1,0,1,2,-1,-4%5D%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false
+
 
 # you are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
 

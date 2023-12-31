@@ -19,6 +19,8 @@ class Solution:
             charSet.add(s[r])
             res = max(res, (r -l) + 1)
         return res
+
+# https://pythontutor.com/render.html#code=class%20Solution%28object%29%3A%0A%20%20%20%20def%20lengthOfLongestSubstring%28self,%20s%29%3A%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20%3Atype%20s%3A%20str%0A%20%20%20%20%20%20%20%20%3Artype%3A%20int%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20charSet%20%3D%20set%28%29%0A%20%20%20%20%20%20%20%20l%20%3D%200%0A%20%20%20%20%20%20%20%20res%20%3D%200%0A%0A%20%20%20%20%20%20%20%20for%20r%20in%20range%28len%28s%29%29%3A%0A%20%20%20%20%20%20%20%20%20%20while%20s%5Br%5D%20in%20charSet%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20charSet.remove%28s%5Bl%5D%29%0A%20%20%20%20%20%20%20%20%20%20%20%20l%20%2B%3D%201%0A%20%20%20%20%20%20%20%20%20%20charSet.add%28s%5Br%5D%29%0A%20%20%20%20%20%20%20%20%20%20res%20%3D%20max%28res,%20%28r-l%29%20%2B1%29%0A%20%20%20%20%20%20%20%20return%20res%0A%0A%20%20%20%20%20%20%20%20%0Ab%20%3D%20Solution%28%29%0Ab.lengthOfLongestSubstring%28%22pwwkew%22%29&cumulative=false&curInstr=34&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false
 # classic sliding window technique
 
 # Given a string s, find the length of the longest substring without repeating characters.

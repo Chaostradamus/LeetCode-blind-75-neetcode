@@ -1,3 +1,35 @@
+# my solution passed 34/51 test cases. not taking lists of 2 into account i think
+
+class Solution(object):
+    def maxSlidingWindow(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        l, r = 0 , k-1
+
+        res = []
+        if len(nums) ==1:
+          res.append(nums[0])
+          return res
+        while r < len(nums):
+          l2, r2 = l, r
+          biggest = 0
+          while l2 < r2:
+            biggest = max(nums[l2], nums[r2])
+
+            if nums[l2] < nums[r2]:
+              l2 += 1
+            else:
+              r2 -= 1
+          res.append(biggest)
+          l += 1
+          r += 1
+        return res
+
+# try #1 tried double slidinig windows. window within a window but only passed 37/51 test cases. think it has to do with length of nums edge cases
+
 # 239. Sliding Window Maximum
 # Hard
 # 17.5K

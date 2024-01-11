@@ -1,3 +1,20 @@
+class Solution:
+    def minWindow(self, s, t):
+    need, missing = collections.Counter(t), len(t)
+    i = I = J = 0
+    for j, c in enumerate(s, 1):
+        missing -= need[c] > 0
+        need[c] -= 1
+        if not missing:
+            while i < j and need[s[i]] < 0:
+                need[s[i]] += 1
+                i += 1
+            if not J or j - i <= J - I:
+                I, J = i, j
+    return s[I:J]
+
+# https://pythontutor.com/render.html#code=import%20collections%0A%0Aclass%20Solution%3A%0A%20%20%20%20def%20minWindow%28self,%20s,%20t%29%3A%0A%20%20%20%20%20%20%20%20need,%20missing%20%3D%20collections.Counter%28t%29,%20len%28t%29%0A%20%20%20%20%20%20%20%20i%20%3D%20I%20%3D%20J%20%3D%200%0A%20%20%20%20%20%20%20%20for%20j,%20c%20in%20enumerate%28s,%201%29%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20missing%20-%3D%20need%5Bc%5D%20%3E%200%0A%20%20%20%20%20%20%20%20%20%20%20%20need%5Bc%5D%20-%3D%201%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20not%20missing%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20while%20i%20%3C%20j%20and%20need%5Bs%5Bi%5D%5D%20%3C%200%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20need%5Bs%5Bi%5D%5D%20%2B%3D%201%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20i%20%2B%3D%201%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20not%20J%20or%20j%20-%20i%20%3C%3D%20J%20-%20I%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20I,%20J%20%3D%20i,%20j%0A%20%20%20%20%20%20%20%20return%20s%5BI%3AJ%5D%0A%0A%20%20%20%20%20%20%20%20%0Ab%20%3D%20Solution%28%29%0Ab.minWindow%28%22ADOBECODEBANC%22,%20t%20%3D%20%22ABC%22%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
+
 # o(n) time and space
 
 class Solution:

@@ -70,3 +70,46 @@ class Solution:
 # we set tmp1 tmp2 as first.next and 2nd.next for access
 # we set first.next to prev nd then prev.next to temp1
 # then we reset first and second to tmp1 and tmp2 spots...moving pointers up
+
+
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution(object):
+    def reorderList(self, head):
+        
+        arr = []
+        cur, length = head, 0
+
+        while cur:
+          arr.append(cur)
+          cur, length = cur.next, length + 1
+
+        left, right = 0, length -1
+        while left < right:
+          arr[left].next = arr[right]
+          left +=1
+
+          if left == right:
+            last = arr[right]
+            break
+          arr[right].next = arr[left]
+          right -= 1
+
+          last = arr[left]
+        if last:
+          last.next = None
+
+# solution 2
+# append all to an array while there is a current. increase length variable as you go
+        # set left to 0 and right to length-1 (the end) 
+        #   once all appended while left oesnt overlap with right
+        # array at left's next is array at right and then move left pointer
+        #   if left == right then we set last to arr[right]....i dont know why....we also break loop
+        #   next we set arrsy at right's next to array at left and move right pointer in
+        #   and set last to arr[left]
+        #   if theres a last then we sever link and set last's nexto to null
+          

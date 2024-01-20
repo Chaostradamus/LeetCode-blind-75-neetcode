@@ -51,3 +51,7 @@ class Solution:
 # return dummy instead of head because of edge case in case list is of size 1 and you need to return null
 
 # 1/16/2023
+    # 1/18/2024
+    # set left as dummy node and right at head. move right while decrementing n to 0
+    # move right and left pointers until right is out of bounds
+    # set lefts next as .next.next and return dummy node's.next to start at head of linked list

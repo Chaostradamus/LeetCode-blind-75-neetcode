@@ -1,0 +1,28 @@
+class Solution(object):
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        slow, fast = 0, 0
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+
+        slow2 = 0
+        while True:
+            slow = nums[slow]
+            slow2 = nums[slow2]
+            if slow == slow2:
+                return slow
+
+
+# https://pythontutor.com/render.html#code=class%20Solution%28object%29%3A%0A%20%20%20%20def%20findDuplicate%28self,%20nums%29%3A%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20%3Atype%20nums%3A%20List%5Bint%5D%0A%20%20%20%20%20%20%20%20%3Artype%3A%20int%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20slow,%20fast%20%3D%200,%200%0A%20%20%20%20%20%20%20%20while%20True%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20slow%20%3D%20nums%5Bslow%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20fast%20%3D%20nums%5Bnums%5Bfast%5D%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20slow%20%3D%3D%20fast%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20break%0A%0A%20%20%20%20%20%20%20%20slow2%20%3D%200%0A%20%20%20%20%20%20%20%20while%20True%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20slow%20%3D%20nums%5Bslow%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20slow2%20%3D%20nums%5Bslow2%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20slow%20%3D%3D%20slow2%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20slow%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0Ab%20%3D%20Solution%28%29%0Ab.findDuplicate%28%5B1,3,4,2,2%5D%29%0A%20%20%20%20%20%20%20%20&cumulative=false&curInstr=37&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
+            
+
+# turns into floyds algo for cycle detection
+#  since there are n + 1 numbers by each value is from 1-n sequence we know there is at least 1 double number
+# knowing this we also know that each number is mapped to an index and we use the index as the linked list nodes instead of the values
+# we do the typical slow and fast pointer then use a new slow pointer and when they meet we return that index's value

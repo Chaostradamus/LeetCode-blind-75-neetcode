@@ -1,4 +1,53 @@
-138. Copy List with Random Pointer
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x, next=None, random=None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+class Solution(object):
+    def copyRandomList(self, head):
+        """
+        :type head: Node
+        :rtype: Node
+        """
+        old = {None: None}
+
+        cur = head
+        while cur:
+          copy = Node(cur.val)
+          old[cur] = copy
+          cur = cur.next
+        
+        cur = head
+        while cur:
+          copy = old[cur]
+          copy.next = old[cur.next]
+          copy.random = old[cur.random]
+
+          cur = cur.next
+        return old[head]
+
+<!-- create hashmap to map old to new list
+set current to head and while there is a cur
+create a new copy node with cur.val
+maps in the hashmap current node to copy node and move current pointer to next
+
+after  thats finished reset cur to head
+and while cur
+get copy by calling on hashmap at current
+set copys next and random by accessing hashmap cur.next and cur.random
+move pointer cur until done
+
+return hashmap at head which will map to copies head
+
+ -->
+        
+
+
+<!-- 138. Copy List with Random Pointer
 Medium
 Topics
 Companies
@@ -33,5 +82,5 @@ Example 3:
 
 
 
-Input: head = [[3,null],[3,0],[3,null]]
-Output: [[3,null],[3,0],[3,null]]
+<!-- Input: head = [[3,null],[3,0],[3,null]] -->
+<!-- Output: [[3,null],[3,0],[3,null]] --> -->

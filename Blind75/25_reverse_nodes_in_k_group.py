@@ -10,6 +10,39 @@ class Solution(object):
         :type k: int
         :rtype: ListNode
         """
+        dummy = ListNode(0, head)
+        groupPrev = dummy
+
+        while True:
+            kth = self.getKth(groupPrev, k)
+            if not kth:
+                break
+            groupNext = kth.next
+
+            # reverse group
+            prev, curr = kth.next, groupPrev.next
+            while curr != groupNext:
+                tmp = curr.next
+                curr.next = prev
+                prev = curr
+                curr = tmp
+
+            tmp = groupPrev.next
+            groupPrev.next = kth
+            groupPrev = tmp
+        return dummy.next
+
+    def getKth(self, curr, k):
+        while curr and k > 0:
+            curr = curr.next
+            k -= 1
+        return curr
+    
+# traverse the linked list k times and reverse that section of the linked list with a helper function
+# set pointers to group prev and group next to hold those spots to connect the separate lists
+# keep iterating through the remaining list K steps at a time and repeat
+# lots of pointers
+        
         
         # solution from leetcode
 # Use a dummy head, and

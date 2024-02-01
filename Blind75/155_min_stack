@@ -1,32 +1,53 @@
 class MinStack(object):
 
     def __init__(self):
-        
+        self.stack = []
+        self.MinStack = []
 
     def push(self, val):
         """
         :type val: int
         :rtype: None
         """
-        
+        self.stack.append(val)
+        val = min(val, self.MinStack[-1] if self.MinStack else val)
+        self.MinStack.append(val)
 
     def pop(self):
         """
         :rtype: None
         """
-        
+        self.stack.pop()
+        self.MinStack.pop()
 
     def top(self):
         """
         :rtype: int
         """
-        
+        return self.stack[-1]
 
     def getMin(self):
         """
         :rtype: int
         """
-        
+        return self.MinStack[-1]
+    
+# create two stacks one for the normal ops and one to hodl minimum at each entry point
+# if you push a 3, 6, -1, 24, -3....
+    # when you push the 3 the minstack is empty so push 3 to both
+    # when you push the 6...compare the 6 to the top of the min stack...that will give you the minimum at the time of insertion of the 6
+    # when you insert -1...you will compare -1 to 6 and minstack will add a -1 because -1 is less than 6
+    # basically each push you will compare the lowest number so far in the stack to the new number to keep a reminder of the lowest up to that point
+    # when you pop you will pop off the top of the stack and from the minstack you will popoff the current smallest number at time of entry 
+    # of the number that got popped off from the normal stack
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
 
 
 // # Your MinStack object will be instantiated and called as such:

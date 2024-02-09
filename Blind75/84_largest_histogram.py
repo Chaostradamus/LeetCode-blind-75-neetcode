@@ -19,5 +19,5 @@ Example 2:
 Input: heights = [2,4]
 Output: 4
 
-# should be similar to water container algorithm?
+# should be similar to water container algorithm but with stack usage
  

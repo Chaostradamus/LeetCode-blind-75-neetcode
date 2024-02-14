@@ -4,7 +4,35 @@ class Solution(object):
         :type n: int
         :rtype: List[str]
         """
-        
+        res = []
+        stack = []
+
+        def backtrack(openN, closedN):
+
+          if closedN == openN == n:
+            res.append("".join(stack))
+            return
+          
+          if openN < n:
+            stack.append("(")
+            backtrack(openN +1, closedN)
+            stack.pop()
+          if closedN < openN:
+            stack.append(")")
+            backtrack(openN, closedN +1)
+            stack.pop()
+
+        backtrack(0,0)
+        return res
+    
+
+# backtracking solution
+# create helper recursive function that takes in open and closed parenthesis count
+# if open closed both equal n thwn add to result array with "".join
+# if open is less than n then you can add an open paren
+# if closed is less than open then you can add a closed paren
+# for each if statement with adding you pass in backtrack function again with updated params and then pop last appended
+# call backtrack with 0's and then return res
 
 
 

@@ -9,6 +9,14 @@ class Solution:
                 stack.pop()
         return len(stack)
 
+# we think of a buunch of linear regressions where intersecting lines mean a collision and a car fleet
+    # we pair up position w/ corresponding speed in a list of pairs and then sort
+    # for every position and speed we go through we append the time it takes to reach destination target
+    # we use target minus position  divided by the speed which will give us the time it takes to reach
+    # we append that
+    # we then check if the stacj has more than or equal to 2 cars first AND if the time it takes the most recent append
+    # is lessthan or equal to the previously added and pop if so
+    # each item in stac will represent a carfleet which are car/cars grouped together due to slow speed of car in front
 
 
 

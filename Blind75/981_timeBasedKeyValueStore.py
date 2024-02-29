@@ -36,6 +36,8 @@ class TimeMap(object):
     
 
     # binary search but with searching off hashmaps values
+    #key value pairs foo: bar, 1...bar2, 2.....bar3, 3
+    # perform binary search after only getting values off given key
 
 #     981. Time Based Key-Value Store
 # Medium

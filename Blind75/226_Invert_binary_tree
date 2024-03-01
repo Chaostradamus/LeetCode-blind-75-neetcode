@@ -56,3 +56,6 @@ class Solution(object):
 # keep temp variable to hold left value. swap left with right and then right with temp
 # recursively call on self.root.left and then right
 # careful with using while loops instead, i believe it just keeps going on a null root vs returning none like the above code
+    
+    # 3/1 2024 update
+    # when you swap nodes its not just in place...all the children will come with it

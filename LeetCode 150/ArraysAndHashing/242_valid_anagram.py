@@ -17,6 +17,7 @@ class Solution:
 # o(n) time and space
 # check if lenths are diff bc that signifies non anagram
 # populate countS and countT hashmps with each letter from s and t. use.get(index, value) for zeroing error
+# countS[s[i]] means s string at i'th index so if s = cat and i = 1 then its using the a as a key for hashmap
 # compare each c in countS, which i think is each key not character, compare to countT of same key
 # non match will equal non anagram 
 # return true if we get thourhg the checks

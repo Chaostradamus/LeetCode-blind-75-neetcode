@@ -18,7 +18,7 @@ def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
 # res at count ( which is ascii count of each word) append the string
 # so for eat  e=1 a=1 t=1 is the key and if the strings count matches that then append that anagram/word
 # using tuple() is python workaround ...lists cannot be keys so change to tuple 
-        res(tuple(count)).append(s)
+        res[tuple(count)].append(s)
 
     return res.values()
 

@@ -1,3 +1,64 @@
+class ListNode:
+  def __init__(self, key=-1, val=-1, next=None):
+    self.key = key
+    self.val = val
+    self.next = None
+
+
+class MyHashMap:
+
+    def __init__(self):
+      self.map = [ListNode() for i in range(1000)]
+        
+    def hash(self, key):
+      return key % len(self.map)
+
+
+    def put(self, key: int, value: int) -> None:
+      cur = self.map[self.hash(key)]
+      while cur.next:
+        if cur.next.key == key:
+          cur.next.val = value
+          return
+        cur = cur.next
+      cur.next = ListNode(key,value)
+        
+
+    def get(self, key: int) -> int:
+      cur = self.map[self.hash(key)].next
+      while cur:
+        if cur.key == key:
+          return cur.val
+        cur = cur.next
+      return -1
+                 
+
+    def remove(self, key: int) -> None:
+      cur = self.map[self.hash(key)]
+      while cur and cur.next:
+        if cur.next.key == key:
+          cur.next = cur.next.next
+          return
+        cur = cur.next
+
+
+# create listNode with key value and next
+# init a hashmap array with listnodes at size length of constraint which is 1000 here
+# creat ehelper function which hashes the key by doing key modulo length of map which is 1000
+# to put something we set current pointer to map at current hashed key (if it exists) is next
+# while there is a cur.next(we are inside the hashed index values  of listnodes now)
+    # if the cur.next key matches then it already exists so we just set the value to val and return out
+        # if not we go to cur.next until we find matching key
+        # if we dont find a matchign key we will create a new one
+# for get we get current pointer and while loop through and return if cur.vkey matches we return the cur.val 
+#   if we dont find it then we return -1
+# for remove we set the current pointer again and while theres a cur and a cur.next...we need cur,next so we dont run out of bounds when we 
+#       set the .next.next for removal
+#       we find matching keys..if we find one we remove the point by setting it to ,next.next
+
+      
+        
+
 # 706. Design HashMap
 # Easy
 # Topics

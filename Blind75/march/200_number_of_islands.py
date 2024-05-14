@@ -50,6 +50,20 @@ class Solution:
               dfs(r,c)
         return islands
 
+# first we check if there is a grid or colun element in grid's first row postion we return 0
+# set islands row/cols and the visit set
+# define the dfs algo
+# edge case check 
+    # if rows or columns not in range(out of bounds) or grid postion is a 0 or the position already in set then we return out of iteration
+    # if none of that applies then add that position to the visit set
+    # call dfs on 4 directions of the cell by making a directions 2d array and callings dfs on each sublists elements on r and c
+    # example for rowchange and colchange in directions dfs(r + rc, c + colchange)
+
+# outside of the helper function
+# we move row by columsn then next row and all its columns
+# on each spot we check if its a 1 and not in visit set
+#   if so we add islands += 1 and then call dfs on that spot
+# return islands at the end
 
 
 # 200. Number of Islands

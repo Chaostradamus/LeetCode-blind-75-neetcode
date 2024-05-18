@@ -32,6 +32,7 @@ class Solution:
 #   it will start at node 1 go search as far as it can and finishes up with node 1's last neighbor
 #   once looping is done we return that copy
 # return a call on dfs(node) if theres a node else None
+# reason we return new[node] is because we are returning the copy of the node
     
 
 # 133. Clone Graph

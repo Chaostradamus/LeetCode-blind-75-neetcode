@@ -12,6 +12,8 @@ class Solution:
         return res[0][0]
                     
 
+                    # dynamic 2d dp
+
 # 1143. Longest Common Subsequence
 # Solved
 # Medium

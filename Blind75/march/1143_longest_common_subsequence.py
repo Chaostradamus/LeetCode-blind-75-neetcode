@@ -12,7 +12,7 @@ class Solution:
         return res[0][0]
                     
 
-                    # dynamic 2d dp
+                    # dynamic 2d dp end of course approaching
 
 # 1143. Longest Common Subsequence
 # Solved

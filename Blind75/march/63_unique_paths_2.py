@@ -23,6 +23,8 @@ class Solution:
 #  if it is then we add up current cell(which will be the cell below here) + plus cell to the right [c +1]
 # return dp[0] at the end
 
+# https://pythontutor.com/render.html#code=%0Afrom%20typing%20import%20List%0A%0Aclass%20Solution%3A%0A%20%20%20%20def%20uniquePathsWithObstacles%28self,%20grid%3A%20List%5BList%5Bint%5D%5D%29%20-%3E%20int%3A%0A%20%20%20%20%20%20%20%20M,%20N%20%3D%20len%28grid%29,%20len%28grid%5B0%5D%29%0A%20%20%20%20%20%20%20%20dp%20%3D%20%5B0%5D%20*%20N%0A%20%20%20%20%20%20%20%20dp%5BN-1%5D%20%3D%201%0A%0A%20%20%20%20%20%20%20%20%23%20Time%3A%20O%28N*M%29,%20Space%3A%20O%28N%29%0A%20%20%20%20%20%20%20%20for%20r%20in%20reversed%28range%28M%29%29%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20for%20c%20in%20reversed%28range%28N%29%29%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20grid%5Br%5D%5Bc%5D%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dp%5Bc%5D%20%3D%200%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20elif%20c%20%2B%201%20%3C%20N%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dp%5Bc%5D%20%3D%20dp%5Bc%5D%20%2B%20dp%5Bc%20%2B%201%5D%0A%20%20%20%20%20%20%20%20return%20dp%5B0%5D%0A%0Ab%20%3D%20Solution%28%29%0Ab.uniquePathsWithObstacles%28%5B%5B0,0,0%5D,%5B0,1,0%5D,%5B0,0,0%5D%5D%29&cumulative=false&curInstr=48&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
+
 # 63. Unique Paths II
 # Medium
 # Topics
